@@ -22,29 +22,31 @@ public class WriteToggleScript : MonoBehaviour
                 toggles[x, y] = 2;
         
       
-        WinPlayer();
-        WinBot();
+        bool a = WinPlayer();
+        if (!a)
+            WinBot();
     }
 
-    void WinPlayer()
+    bool WinPlayer()
     {
         Debug.Log(toggles.Length);
         if (toggles[0, 2] == 1 && toggles[1, 2] == 1 && toggles[2, 2] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[2, 2] == 1 && toggles[2, 1] == 1 && toggles[2, 0] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[0, 0] == 1 && toggles[1, 0] == 1 && toggles[2, 0] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[0, 0] == 1 && toggles[0, 1] == 1 && toggles[0, 2] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[2, 0] == 1 && toggles[2, 1] == 1 && toggles[2, 2] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[0, 1] == 1 && toggles[1, 1] == 1 && toggles[2, 1] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[0, 2] == 1 && toggles[1, 1] == 1 && toggles[2, 0] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
         else if (toggles[0, 0] == 1 && toggles[1, 1] == 1 && toggles[2, 2] == 1)
-            Debug.Log("You win");
+        { Debug.Log("You win"); return true; }
+        return false;
     }
 
     void WinBot()
