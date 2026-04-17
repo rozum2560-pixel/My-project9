@@ -25,23 +25,29 @@ public class WriteToggleScript : MonoBehaviour
             text.text = "You lose";
         restartScr.rest.image.enabled = true;
     }
-    public void WriteToggle(int x,int y,bool doPLayer)
+    public bool WriteToggle(int x,int y,bool doPLayer)
     {
-
+        if (toggles[x,y] == 0)
+        {
             if (doPLayer)
+            {
                 toggles[x, y] = 1;
+            }
             else
+            {
                 toggles[x, y] = 2;
-        
-      
-        bool a = WinPlayer();
-        if (!a)
-            WinBot();
+            }
+            bool a = WinPlayer();
+            if (!a)
+                WinBot();
+            return true;
+        }
+        else
+            return false;
     }
 
     bool WinPlayer()
     {
-        Debug.Log(toggles.Length);
         if (toggles[0, 2] == 1 && toggles[1, 2] == 1 && toggles[2, 2] == 1)
         { Debug.Log("You win"); Win("Player"); return true; }
         else if (toggles[2, 2] == 1 && toggles[2, 1] == 1 && toggles[2, 0] == 1)
@@ -50,7 +56,7 @@ public class WriteToggleScript : MonoBehaviour
         { Debug.Log("You win"); Win("Player"); return true; }
         else if (toggles[0, 0] == 1 && toggles[0, 1] == 1 && toggles[0, 2] == 1)
         { Debug.Log("You win"); Win("Player"); return true; }
-        else if (toggles[2, 0] == 1 && toggles[2, 1] == 1 && toggles[2, 2] == 1)
+        else if (toggles[1, 2] == 1 && toggles[1, 1] == 1 && toggles[1, 0] == 1)
         { Debug.Log("You win"); Win("Player"); return true; }
         else if (toggles[0, 1] == 1 && toggles[1, 1] == 1 && toggles[2, 1] == 1)
         { Debug.Log("You win"); Win("Player"); return true; }
@@ -71,7 +77,7 @@ public class WriteToggleScript : MonoBehaviour
         { Debug.Log("You lose"); Win("Bot"); }
         else if (toggles[0, 0] == 2 && toggles[0, 1] == 2 && toggles[0, 2] == 2)
         { Debug.Log("You lose"); Win("Bot"); }
-        else if (toggles[2, 0] == 2 && toggles[2, 1] == 2 && toggles[2, 2] == 2)
+        else if (toggles[1, 2] == 2 && toggles[1, 1] == 2 && toggles[1, 0] == 2)
         { Debug.Log("You lose"); Win("Bot"); }
         else if (toggles[0, 1] == 2 && toggles[1, 1] == 2 && toggles[2, 1] == 2)
         { Debug.Log("You lose"); Win("Bot"); }

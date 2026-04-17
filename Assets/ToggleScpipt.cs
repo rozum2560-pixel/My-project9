@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class ToggleScpipt : MonoBehaviour
 {
     private Toggle toggle;
-    private isPlayerDoScript isPlayerDoScript;
     public int _togglePosX;
     public int _togglePosY;
     [SerializeField] Sprite _sprite;
@@ -15,24 +14,18 @@ public class ToggleScpipt : MonoBehaviour
     void Awake()
     {
         toggle = GetComponent<Toggle>();
-        isPlayerDoScript = GetComponentInChildren<isPlayerDoScript>();
     }
 
-    public void OnValueChanged()
+    public void Player()
     {
-        Debug.Log("toggle was pressed");
+        _checkmark.sprite = _sprite;
         toggle.interactable = false;
-        enumerator();
-        if (isPlayerDoScript) 
+        bool isEmpty = WriteToggleScript.Instance.WriteToggle(_togglePosX,_togglePosY, true);
+        if (!isEmpty) 
         {
-            _checkmark.sprite = _sprite;
-            toggle.isOn = true;
-            WriteToggleScript.Instance.WriteToggle(_togglePosX, _togglePosY, true);
+            Debug.Log("You press in used window,try agin");
         }
     }
 
-    IEnumerator enumerator()
-    {
-        yield return new WaitForSeconds(0.1f);
-    }
+    
 }
