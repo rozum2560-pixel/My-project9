@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ToggleScpipt : MonoBehaviour
 {
     private Toggle toggle;
+    private isPlayerDoScript isPlayerDoScript;
     public int _togglePosX;
     public int _togglePosY;
     [SerializeField] Sprite _sprite;
@@ -13,16 +15,24 @@ public class ToggleScpipt : MonoBehaviour
     void Awake()
     {
         toggle = GetComponent<Toggle>();
- 
+        isPlayerDoScript = GetComponentInChildren<isPlayerDoScript>();
     }
 
-    public void OnValueChanged(bool doPlayer)
+    public void OnValueChanged()
     {
-        if (doPlayer) { _checkmark.sprite = _sprite; }
-        else { _checkmark.sprite = sprite2; }
-        toggle.isOn = true;
+        Debug.Log("toggle was pressed");
         toggle.interactable = false;
-        WriteToggleScript.Instance.WriteToggle(_togglePosX, _togglePosY, doPlayer);
-        BotAScript.instance.BotTurn(_togglePosX, _togglePosY);
+        enumerator();
+        if (isPlayerDoScript) 
+        {
+            _checkmark.sprite = _sprite;
+            toggle.isOn = true;
+            WriteToggleScript.Instance.WriteToggle(_togglePosX, _togglePosY, true);
+        }
+    }
+
+    IEnumerator enumerator()
+    {
+        yield return new WaitForSeconds(0.1f);
     }
 }

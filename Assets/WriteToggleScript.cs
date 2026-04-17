@@ -23,6 +23,7 @@ public class WriteToggleScript : MonoBehaviour
             text.text = "You win";
         else if (who == "Bot")
             text.text = "You lose";
+        restartScr.rest.image.enabled = true;
     }
     public void WriteToggle(int x,int y,bool doPLayer)
     {
