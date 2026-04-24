@@ -25,6 +25,13 @@ public class ToggleScpipt : MonoBehaviour
         {
             Debug.Log("You press in used window,try agin");
         }
+        else{
+            BotAScript.instance.BotTurn(_togglePosX,_togglePosY);
+        }
+    }
+    public void Bot(){
+        _checkmark.sprite = sprite2;
+        toggle.interactable = false;
     }
 
     
