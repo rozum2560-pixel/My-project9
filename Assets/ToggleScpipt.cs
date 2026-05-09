@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,10 +30,12 @@ public class ToggleScpipt : MonoBehaviour
             BotAScript.instance.BotTurn(_togglePosX,_togglePosY);
         }
     }
-    public void Bot(){
+    public void Bot(int x,int y)
+    {
         _checkmark.sprite = sprite2;
         toggle.SetIsOnWithoutNotify(true);
         toggle.interactable = false;
+        WriteToggleScript.Instance.WriteToggle(x, y, false);
     }
 
     
