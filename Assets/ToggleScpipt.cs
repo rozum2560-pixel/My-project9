@@ -31,6 +31,7 @@ public class ToggleScpipt : MonoBehaviour
     }
     public void Bot(){
         _checkmark.sprite = sprite2;
+        toggle.SetIsOnWithoutNotify(true);
         toggle.interactable = false;
     }
 
