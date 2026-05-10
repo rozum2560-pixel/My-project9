@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BotAScript : MonoBehaviour
 {
+    int botCount = 0;
     public static BotAScript instance;
     public ToggleScpipt toggle1;
     public ToggleScpipt toggle2;
@@ -20,19 +22,37 @@ public class BotAScript : MonoBehaviour
     }
     public void BotTurn(int x, int y)
     {
-        
-        try
-        {
-            if (WriteToggleScript.Instance.toggles[0,y] == 0) { BotPress(0, y); }
-            else { if (WriteToggleScript.Instance.toggles[2,y] == 0) { BotPress(2, y); } else { } }
-        }
-        catch
-        {
-            foreach(int toggle in WriteToggleScript.Instance.toggles)
-            {
-                if(toggle == 0) {BotPressFor(toggle);break;  }
-                else { Debug.Log("The position" +  toggle); }
-            }
+        botCount++;
+        switch (botCount) {
+            case 1 :
+                if(WriteToggleScript.Instance.toggles[1,1] == 1)
+                {
+                    int rd = Random.Range(1, 5);
+                    switch(rd)
+                    {
+                        case 1 :
+                            BotPressFor(1);
+                            break;
+                        case 2 :
+                            BotPressFor(3);
+                            break;
+                        case 3 :
+                            BotPressFor(7);
+                            break;
+                        case 4 :
+                            BotPressFor(9);
+                            break;
+                    }  
+                }
+                else if(WriteToggleScript.Instance.toggles[0 ,2] == 1 || WriteToggleScript.Instance.toggles[2 ,2] == 1 || WriteToggleScript.Instance.toggles[0, 0] == 1 || WriteToggleScript.Instance.toggles[2, 0] == 1)
+                {
+                    BotPressFor(5);
+                }
+                else
+                {
+                    RandomOnFirstTurn();
+                }
+                break;
         }
     }
     private void BotPress(int x,int y)
@@ -71,4 +91,24 @@ public class BotAScript : MonoBehaviour
         else if (num == 8) { toggle8.Bot(1, 0); }
         else if (num == 9) { toggle9.Bot(2, 0); }
     }
+    private void RandomOnFirstTurn()
+    {
+        bool doTurned = false;
+        ToggleScpipt[] togless = {toggle1,toggle2,toggle3,toggle4,toggle5,toggle6,toggle7,toggle8,toggle9};
+        foreach(var randomToggle in togless)
+        {
+            int rd = Random.Range(0, 9);
+            if(rd == 4 && WriteToggleScript.Instance.toggles[randomToggle._togglePosX ,randomToggle._togglePosY] == 0)
+            {
+                doTurned = true;
+                randomToggle.Bot(randomToggle._togglePosX ,randomToggle._togglePosY);
+                break;
+            }
+        }
+        if (!doTurned)
+        {
+            RandomOnFirstTurn();
+        }
+    }
+    
 }

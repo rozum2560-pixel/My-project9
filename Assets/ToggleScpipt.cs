@@ -37,6 +37,7 @@ public class ToggleScpipt : MonoBehaviour
         toggle.interactable = false;
         WriteToggleScript.Instance.WriteToggle(x, y, false);
     }
+    
 
     
 }
