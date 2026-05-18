@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BotAScript : MonoBehaviour
 {
-    float[] fistPointOnVector = {0,0};
+    int[] fistPointOnVector = {0,0};
     int botCount = 0;
     public static BotAScript instance;
     public ToggleScpipt toggle1;
@@ -27,6 +27,7 @@ public class BotAScript : MonoBehaviour
         botCount++;
         switch (botCount) {
             case 1 :
+                WriteTheFirstTurn();
                 if(WriteToggleScript.Instance.toggles[1,1] == 1)
                 {
                     int rd = UnityEngine.Random.Range(1, 5);
@@ -118,40 +119,44 @@ public class BotAScript : MonoBehaviour
 
     private void OnSecondTurn()
     {
-        float[] point1 = {4,4};
-        float[] point2 = {4,4};
+        int[] point1 = {5,5};
+        
         ToggleScpipt[] togless = { toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8, toggle9 };
         foreach (var e in togless)
         {
-            if(e.toggle.isOn && e._checkmark == e._sprite)
+            if(WriteToggleScript.Instance.toggles[e._togglePosX,e._togglePosY] == 1)
             {
-                if (point1[0] == 4)
+                if(e._togglePosX != fistPointOnVector[0] && e._togglePosY != fistPointOnVector[1])
                 {
+                    Debug.Log("true");
                     point1[0] = e._togglePosX;
                     point1[1] = e._togglePosY;
                 }
-                else if (point2[0] == 4)
-                {
-                    point2[0] = e._togglePosX;
-                    point2[1] = e._togglePosY;
-                }
-                else
-                    break;
             }
         }
-        fistPointOnVector = point1;
-        float[] vector = { 0, 0 };
-        vector[0] = point2[0] - point1[0];
-        vector[1] = point2[1] - point1[1];
-        Debug.Log(vector[0] + " " + vector[1]);
-        vector[0] = vector[0] * 1.5f;
-        vector[1] = vector[1] * 1.5f;
-        Debug.Log(vector[0] + " " + vector[1]);
-        float[] lastPoint = { fistPointOnVector[0] + vector[0], fistPointOnVector[1] + vector[1] };
-        Debug.Log(lastPoint[0] + " " + lastPoint[1]);
-        int[] lastPointOnInt = { Convert.ToInt32(lastPoint[0]), Convert.ToInt32(lastPoint[1]) };
-        BotPress(lastPointOnInt[0], lastPointOnInt[1]);
+        Debug.Log(fistPointOnVector[0] + " " + fistPointOnVector[1] + ":it`s a first point ");
+        Debug.Log(point1[0] + " " + point1[1] + ":its second point");
+        int[] vector = { 0, 0 };
+        vector[0] = point1[0] - fistPointOnVector[0] * 2;
+        vector[1] = point1[1] - fistPointOnVector[1] * 2;
+        Debug.Log(vector[0] + " " + vector[1] + ":it`s a vector which *2 already");
+        int[] lastPoint = { fistPointOnVector[0] + vector[0], fistPointOnVector[1] + vector[1] };
+        Debug.Log(lastPoint[0] + " " + lastPoint[1] + ":it`s a point where bot has turn");
+        BotPress(lastPoint[0], lastPoint[1]);
         
+    }
+
+    void WriteTheFirstTurn()
+    {
+        ToggleScpipt[] togless = { toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8, toggle9 };
+       foreach(var i in togless )
+       {
+            if(WriteToggleScript.Instance.toggles[i._togglePosX,i._togglePosY] == 1)
+            {
+                fistPointOnVector[0] = i._togglePosX;
+                fistPointOnVector[1] = i._togglePosY;
+            }
+       }
     }
     
 }

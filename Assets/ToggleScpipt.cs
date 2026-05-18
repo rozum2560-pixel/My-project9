@@ -19,6 +19,7 @@ public class ToggleScpipt : MonoBehaviour
 
     public void Player()
     {
+        Debug.Log(_togglePosX + " " + _togglePosY);
         _checkmark.sprite = _sprite;
         toggle.interactable = false;
         bool isEmpty = WriteToggleScript.Instance.WriteToggle(_togglePosX,_togglePosY, true);
