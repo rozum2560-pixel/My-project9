@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BotAScript : MonoBehaviour
 {
+    float[] fistPointOnVector = {0,0};
     int botCount = 0;
     public static BotAScript instance;
     public ToggleScpipt toggle1;
@@ -27,7 +29,7 @@ public class BotAScript : MonoBehaviour
             case 1 :
                 if(WriteToggleScript.Instance.toggles[1,1] == 1)
                 {
-                    int rd = Random.Range(1, 5);
+                    int rd = UnityEngine.Random.Range(1, 5);
                     switch(rd)
                     {
                         case 1 :
@@ -52,6 +54,9 @@ public class BotAScript : MonoBehaviour
                 {
                     RandomOnFirstTurn();
                 }
+                break;
+            case 2:
+                OnSecondTurn();
                 break;
         }
     }
@@ -97,7 +102,7 @@ public class BotAScript : MonoBehaviour
         ToggleScpipt[] togless = {toggle1,toggle2,toggle3,toggle4,toggle5,toggle6,toggle7,toggle8,toggle9};
         foreach(var randomToggle in togless)
         {
-            int rd = Random.Range(0, 9);
+            int rd = UnityEngine.Random.Range(0, 9);
             if(rd == 4 && WriteToggleScript.Instance.toggles[randomToggle._togglePosX ,randomToggle._togglePosY] == 0)
             {
                 doTurned = true;
@@ -109,6 +114,44 @@ public class BotAScript : MonoBehaviour
         {
             RandomOnFirstTurn();
         }
+    }
+
+    private void OnSecondTurn()
+    {
+        float[] point1 = {4,4};
+        float[] point2 = {4,4};
+        ToggleScpipt[] togless = { toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8, toggle9 };
+        foreach (var e in togless)
+        {
+            if(e.toggle.isOn && e._checkmark == e._sprite)
+            {
+                if (point1[0] == 4)
+                {
+                    point1[0] = e._togglePosX;
+                    point1[1] = e._togglePosY;
+                }
+                else if (point2[0] == 4)
+                {
+                    point2[0] = e._togglePosX;
+                    point2[1] = e._togglePosY;
+                }
+                else
+                    break;
+            }
+        }
+        fistPointOnVector = point1;
+        float[] vector = { 0, 0 };
+        vector[0] = point2[0] - point1[0];
+        vector[1] = point2[1] - point1[1];
+        Debug.Log(vector[0] + " " + vector[1]);
+        vector[0] = vector[0] * 1.5f;
+        vector[1] = vector[1] * 1.5f;
+        Debug.Log(vector[0] + " " + vector[1]);
+        float[] lastPoint = { fistPointOnVector[0] + vector[0], fistPointOnVector[1] + vector[1] };
+        Debug.Log(lastPoint[0] + " " + lastPoint[1]);
+        int[] lastPointOnInt = { Convert.ToInt32(lastPoint[0]), Convert.ToInt32(lastPoint[1]) };
+        BotPress(lastPointOnInt[0], lastPointOnInt[1]);
+        
     }
     
 }

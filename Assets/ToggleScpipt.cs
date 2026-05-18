@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class ToggleScpipt : MonoBehaviour
 {
-    private Toggle toggle;
+    public Toggle toggle;
     public int _togglePosX;
     public int _togglePosY;
-    [SerializeField] Sprite _sprite;
-    [SerializeField] Sprite sprite2;
-    [SerializeField] Image _checkmark;
+    public Sprite _sprite;
+    public Sprite sprite2;
+    public Image _checkmark;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
