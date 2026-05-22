@@ -126,24 +126,68 @@ public class BotAScript : MonoBehaviour
         {
             if(WriteToggleScript.Instance.toggles[e._togglePosX,e._togglePosY] == 1)
             {
-                if(e._togglePosX != fistPointOnVector[0] && e._togglePosY != fistPointOnVector[1])
+                if(e._togglePosX != fistPointOnVector[0] || e._togglePosY != fistPointOnVector[1])
                 {
-                    Debug.Log("true");
                     point1[0] = e._togglePosX;
                     point1[1] = e._togglePosY;
                 }
             }
         }
-        Debug.Log(fistPointOnVector[0] + " " + fistPointOnVector[1] + ":it`s a first point ");
-        Debug.Log(point1[0] + " " + point1[1] + ":its second point");
+        Debug.Log("start");
         int[] vector = { 0, 0 };
-        vector[0] = point1[0] - fistPointOnVector[0] * 2;
-        vector[1] = point1[1] - fistPointOnVector[1] * 2;
-        Debug.Log(vector[0] + " " + vector[1] + ":it`s a vector which *2 already");
+        vector[0] = point1[0] - fistPointOnVector[0];
+        vector[1] = point1[1] - fistPointOnVector[1];
+        vector[0] *= 2;
+        vector[1] *= 2;
         int[] lastPoint = { fistPointOnVector[0] + vector[0], fistPointOnVector[1] + vector[1] };
-        Debug.Log(lastPoint[0] + " " + lastPoint[1] + ":it`s a point where bot has turn");
-        BotPress(lastPoint[0], lastPoint[1]);
-        
+        if(lastPoint[0] > 2 || lastPoint[1] > 2 || lastPoint[0] < 0 || lastPoint[1] < 0)
+        {
+            Debug.Log("start");
+            int[] vector1 = { 0, 0 };
+            vector1[0] = fistPointOnVector[0] - point1[0];
+            vector1[1] = fistPointOnVector[1] - point1[1];
+            vector1[0] *= 2;
+            vector1[1] *= 2;
+            int[] lastPoint1 = { point1[0] + vector1[0], point1[1] + vector1[1] };
+            if(lastPoint1[0] > 2 || lastPoint1[1] > 2 || lastPoint1[0] < 0 || lastPoint1[1] < 0)
+            {
+                int[] sum = { 0, 0};
+                sum[0] = fistPointOnVector[0] + point1[0];
+                sum[1] = fistPointOnVector[1] + point1[1];
+                sum[0] /= 2;
+                sum[1] /= 2;
+                if(WriteToggleScript.Instance.toggles[sum[0],sum[1]] != 2)
+                {
+                    BotPress(sum[0], sum[1]);
+                }
+                else
+                {
+                    RandomOnFirstTurn();
+                }
+            }
+            else
+            {
+                if(WriteToggleScript.Instance.toggles[lastPoint1[0],lastPoint1[1]] != 2)
+                {
+                    BotPress(lastPoint1[0], lastPoint1[1]);
+                }
+                else
+                {
+                    RandomOnFirstTurn();
+                }  
+            }
+        }
+        else
+        {
+            if(WriteToggleScript.Instance.toggles[lastPoint[0],lastPoint[1]] != 2)
+            {
+                BotPress(lastPoint[0], lastPoint[1]);
+            }
+            else
+            {
+                RandomOnFirstTurn();
+            }
+        }
     }
 
     void WriteTheFirstTurn()
