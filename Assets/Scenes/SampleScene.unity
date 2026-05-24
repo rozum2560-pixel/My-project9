@@ -757,6 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 1
   _togglePosY: 1
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -872,6 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 0
   _togglePosY: 1
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -1215,7 +1217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16470589}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.3254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1502,6 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 2
   _togglePosY: 0
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -1797,6 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 2
   _togglePosY: 1
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -2135,6 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 1
   _togglePosY: 2
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -2598,6 +2603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 1
   _togglePosY: 0
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -2867,6 +2873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 2
   _togglePosY: 2
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -3133,6 +3140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 0
   _togglePosY: 2
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
@@ -3324,6 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b05d9c6f3cc9943967b7dccb83a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleScpipt
+  toggle: {fileID: 0}
   _togglePosX: 0
   _togglePosY: 0
   _sprite: {fileID: 21300000, guid: dfcc201f2cac247418588a8f8601299a, type: 3}
