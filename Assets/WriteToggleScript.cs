@@ -8,6 +8,8 @@ public class WriteToggleScript : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private GameObject @object;
 
+
+
         public int[,] toggles =
         {
             { 0, 0, 0 },
@@ -23,6 +25,10 @@ public class WriteToggleScript : MonoBehaviour
             text.text = "You win";
         else if (who == "Bot")
             text.text = "You lose";
+        else
+        {
+            text.text = "Tie";
+        }
         restartScr.rest.image.enabled = true;
     }
     public bool WriteToggle(int x,int y,bool doPLayer)
@@ -39,11 +45,26 @@ public class WriteToggleScript : MonoBehaviour
             }
             bool a = WinPlayer();
             if (!a)
-                WinBot();
+            {
+                a = WinBot();   
+            }
+            int b = 0;
+            foreach(var c in toggles)
+            {
+                if(c != 0)
+                {
+                    b++;
+                }
+            }
+            if(b == 9)
+            {
+                Win("sdvbn");
+            }
             return true;
         }
         else
             return false;
+
     }
 
     bool WinPlayer()
@@ -64,26 +85,30 @@ public class WriteToggleScript : MonoBehaviour
         { Debug.Log("You win"); Win("Player"); return true; }
         else if (toggles[0, 0] == 1 && toggles[1, 1] == 1 && toggles[2, 2] == 1)
         { Debug.Log("You win"); Win("Player"); return true; }
-        return false;
+        else {return false;}
     }
 
-    void WinBot()
+    bool WinBot()
     {
         if (toggles[0, 2] == 2 && toggles[1, 2] == 2 && toggles[2, 2] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[2, 2] == 2 && toggles[2, 1] == 2 && toggles[2, 0] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[0, 0] == 2 && toggles[1, 0] == 2 && toggles[2, 0] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[0, 0] == 2 && toggles[0, 1] == 2 && toggles[0, 2] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[1, 2] == 2 && toggles[1, 1] == 2 && toggles[1, 0] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[0, 1] == 2 && toggles[1, 1] == 2 && toggles[2, 1] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[0, 2] == 2 && toggles[1, 1] == 2 && toggles[2, 0] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
         else if (toggles[0, 0] == 2 && toggles[1, 1] == 2 && toggles[2, 2] == 2)
-        { Debug.Log("You lose"); Win("Bot"); }
+        { Debug.Log("You lose"); Win("Bot"); return true;}
+        else
+        {
+            return false;
+        }
     }
 }
